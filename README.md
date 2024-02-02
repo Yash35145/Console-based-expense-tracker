@@ -3,6 +3,7 @@
 ## Overview
 Expense Tracker is a simple Java console application designed to help users manage their expenses efficiently. 
 The application allows users to add, delete, modify, and view expenses. Additionally, users can manage expense categories and generate reports.
+This project is a part of my 4 week intership with **Upskill Campus**
 
 ## Features
 
@@ -46,7 +47,7 @@ Feel free to contribute to the project by submitting bug reports, feature reques
 This project is licensed under the [GNU General Public License](LICENSE).
 
 ## Acknowledgments
-- This project was inspired by the project topics provided in 4 Week Internship in Core Java with upskill campus (https://upskillcampus.com).
+- This project was inspired by the project topics provided under 4 week internship in core java with Upskill Campus (https://upskillcampus.com).
 - Special thanks to the contributors for their valuable feedback and suggestions.
 
 ## Contact
