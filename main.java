@@ -170,17 +170,19 @@ public class main{
                 System.out.println("***************\n");
                 System.out.print("Enter Expense ID to delete expense :");
                 int deleteExpId = sc.nextInt();
-                expense toRemoveExpense = new expense();
-                for (expense seperateExpense : expObjects) {
-                    if(seperateExpense.getExp_id() == deleteExpId){
-                       toRemoveExpense = seperateExpense;
-                       expObjects.remove(expObjects.indexOf(toRemoveExpense));
+                boolean expenseDeleted = false;
+                try {
+                    for (expense seperateExpense : expObjects) {
+                        if(seperateExpense.getExp_id() == deleteExpId){
+                           expObjects.remove(expObjects.indexOf(seperateExpense));
+                           System.out.println("Expense Deleted successfully");
+                           expenseDeleted = true;
+                        }
                     }
-                    else{
-                        System.out.println("Element not found");
-                        break;
-                    }
+                } catch (Exception e) {
+                    // System.out.println("Error while deleting expense.");
                 }
+                if(expenseDeleted == false) System.out.println("Element not found");
                 expenseStorage.storeExpense(expObjects);
                 break;
 
