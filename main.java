@@ -108,6 +108,11 @@ class expenseStorage{
 }
 
 public class main{
+    static void waitForEnter(){
+        System.out.println("Press enter to continue..");
+        try{System.in.read();}
+        catch(Exception e){}
+    }
 
     static void clearScreen(){
         System.out.print("\033[H\033[2J");  
@@ -116,13 +121,13 @@ public class main{
 
     public static void main(String[] args) {
 
-        // code to clear screen
-        clearScreen();
         // arraylist to store object of class expense
         ArrayList<expense> expObjects = expenseStorage.readExpense();
         Scanner sc = new Scanner(System.in);
         int option = 0;
         while(option !=7){
+            // code to clear screen
+            clearScreen();
             // code to display name of project
         System.out.println("\t********************************");
         System.out.println(" \t\tExpense Tracker");
@@ -143,6 +148,10 @@ public class main{
 
             switch (option) {
                 case 1:
+                clearScreen();
+                System.out.println("\n***************");
+                System.out.println("Add Expense");
+                System.out.println("***************\n");
                 System.out.print("\nEnter expense ID :");
                 int exp_id = sc.nextInt();
                 System.out.print("Enter Amount :");
@@ -162,9 +171,11 @@ public class main{
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                waitForEnter();
                 break;
 
                 case 2:
+                clearScreen();
                 System.out.println("\n\n***************");
                 System.out.println("Delete Expense");
                 System.out.println("***************\n");
@@ -184,9 +195,11 @@ public class main{
                 }
                 if(expenseDeleted == false) System.out.println("Element not found");
                 expenseStorage.storeExpense(expObjects);
+                waitForEnter();
                 break;
 
                 case 4:
+                clearScreen();
                 System.out.println("\n\n***************");
                 System.out.println("View Expense");
                 System.out.println("***************\n");
@@ -196,20 +209,24 @@ public class main{
                     i++;
                 }
                 System.out.println("\n");
+                waitForEnter();
                 break;
 
                 case 7:
-                    System.out.println("Thank you for using our expense tracker, Goodbye...");
-                    break;
+                clearScreen();
+                System.out.println("\t********************************");
+                System.out.println(" \t\tExpense Tracker");
+                System.out.println("\t********************************\n");
+                System.out.println("Thank you for using our expense tracker, Goodbye...\n");
+                break;
             
                 default:
                 System.out.println("Invalid Choice. Try Again");
-                    break;
+                waitForEnter();
+                 break;
             }
 
         }
-        
-        
         sc.close();
     }
 }
