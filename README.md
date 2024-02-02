@@ -54,5 +54,5 @@ For any inquiries or feedback, please contact the project maintainer:
 - Yash Sanodiya
 - yashsanodiya169@gmail.com
 
-- Made with ❤️ by Yash Sanodiya 
-- Thank you for using the Expense Tracker!
+ Made with ❤️ by Yash Sanodiya. 
+ Thank you for using the Expense Tracker!
