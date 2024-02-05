@@ -27,10 +27,11 @@ The application allows users to add, delete, modify, and view expenses. Addition
 - Users can modify existing expenses by providing the expense ID.
 - The application prompts users to enter new details for the selected expense.
 
-### 6. Generate Report (Under Development)
-- Planned feature for generating detailed expense reports.
-- This feature is currently under development.
-
+### 6. Generate Report (Category Wise)
+- Generates a detailed expense report based on categories.
+- Enter a category name to view expenses associated with that category.
+- Date wise report generation is currently under development and will be added in future updates.
+  
 ## Getting Started
 1. Clone the repository.
 2. Compile and run the `main.java` file in a Java development environment.
@@ -39,6 +40,12 @@ The application allows users to add, delete, modify, and view expenses. Addition
 ## Files and Storage
 - **Expense Data**: Expenses are stored in the `expense.txt` file.
 - **Category Data**: Expense categories are stored in the `categories.txt` file.
+
+## Sample Data
+- **Expense Data**: Sample data for expense is stored in the `expense.txt` file.
+- **Category Data**: Sample data for categories is stored  in the `categories.txt` file.
+- Feel free to use it.
+- **Note**: If you want to start with fresh files , simply delete the `expense.txt` and `categories.txt` files.
 
 ## Contributing
 Feel free to contribute to the project by submitting bug reports, feature requests, or pull requests. Your input is highly appreciated!
