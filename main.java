@@ -123,7 +123,7 @@ class categories {
         try {
             FileWriter categoriesFileWriter = new FileWriter("categories.txt");
             for (String category : categories) {
-                categoriesFileWriter.write(category.toLowerCase() + ",");
+                categoriesFileWriter.write(category.toLowerCase() +  "\n");
             }
             categoriesFileWriter.close();
         } catch (Exception e) {
@@ -139,7 +139,7 @@ class categories {
                 Scanner sc = new Scanner(categoriesFile);
                 while (sc.hasNextLine()) {
                     String line = sc.nextLine();
-                    String[] categoryArr = line.split(",");
+                    String[] categoryArr = line.split("\n");
                     for (String string : categoryArr) {
                         categories.add(string);
                     }
@@ -183,7 +183,7 @@ public class main {
                 System.out.println("\t********************************");
                 System.out.println(" \t\tExpense Tracker");
                 System.out.println("\t********************************\n");
-    
+
                 // options displayed to user
                 System.out.println("1)Add expense");
                 System.out.println("2)Delete expense");
@@ -192,11 +192,11 @@ public class main {
                 System.out.println("5)Modify expense");
                 System.out.println("6)Generate Report");
                 System.out.println("7)Exit\n");
-    
+
                 // taking input
                 System.out.print("Enter your option :");
                 option = sc.nextInt();
-    
+
                 switch (option) {
                     case 1:
                         clearScreen();
@@ -210,34 +210,34 @@ public class main {
                         String date = new String();
                         try {
                             System.out.print("\nEnter expense ID :");
-                        exp_id = sc.nextInt();
-                        System.out.print("Enter Amount :");
-                        amount = sc.nextInt();
-                        sc.nextLine();
-                        System.out.print("Enter Category :");
-                        category = sc.nextLine();
-                        if (categoriesList.contains(category)) {
-                            System.out.print("Enter Description :");
-                            description = sc.nextLine();
-                            System.out.print("Enter Date(dd/mm/yyyy) :");
-                            date = sc.nextLine();
-                            expense exp = new expense(exp_id, amount, category, description, date);
-                            try {
-                                expObjects.add(exp);
-                                expenseStorage.storeExpense(expObjects);
-                                System.out.println("\n\nInformation Added successfully");
-                            } catch (Exception e) {
-                                e.printStackTrace();
+                            exp_id = sc.nextInt();
+                            System.out.print("Enter Amount :");
+                            amount = sc.nextInt();
+                            sc.nextLine();
+                            System.out.print("Enter Category :");
+                            category = sc.nextLine();
+                            if (categoriesList.contains(category.toLowerCase())) {
+                                System.out.print("Enter Description :");
+                                description = sc.nextLine();
+                                System.out.print("Enter Date(dd/mm/yyyy) :");
+                                date = sc.nextLine();
+                                expense exp = new expense(exp_id, amount, category, description, date);
+                                try {
+                                    expObjects.add(exp);
+                                    expenseStorage.storeExpense(expObjects);
+                                    System.out.println("\n\nInformation Added successfully");
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                System.out.println("Category does not exist. First create category and try again.");
                             }
-                        } else {
-                            System.out.println("Category does not exist. First create category and try again.");
-                        }
                         } catch (Exception e) {
                             System.out.println("Invalid input in one or more field. Try Again!");
                         }
                         waitForEnter();
                         break;
-    
+
                     case 2:
                         clearScreen();
                         System.out.println("\n\n***************");
@@ -262,7 +262,7 @@ public class main {
                         expenseStorage.storeExpense(expObjects);
                         waitForEnter();
                         break;
-    
+
                     case 3:
                         clearScreen();
                         System.out.println("\n*****************");
@@ -271,6 +271,7 @@ public class main {
                         System.out.println("1) Add category");
                         System.out.println("2) View categories");
                         System.out.println("3) Delete category");
+                        System.out.println("4) Main Menu");
                         int categoryChoice = 0;
                         System.out.print("Enter your choice : ");
                         categoryChoice = sc.nextInt();
@@ -285,7 +286,7 @@ public class main {
                                 System.out.print("\nEnter the name of the category :");
                                 String categoryName = new String();
                                 try {
-                                categoryName = sc.nextLine();
+                                    categoryName = sc.nextLine();
                                 } catch (Exception e) {
                                     System.out.println("Incorrect Input. Please try again");
                                 }
@@ -311,7 +312,7 @@ public class main {
                                 }
                                 waitForEnter();
                                 break;
-    
+
                             case 3:
                                 clearScreen();
                                 System.out.println("\n**************");
@@ -322,21 +323,21 @@ public class main {
                                 String deleteCategory = new String();
                                 try {
                                     deleteCategory = sc.nextLine();
-                                    } catch (Exception e) {
-                                        System.out.println("Incorrect Input. Please try again");
-                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Incorrect Input. Please try again");
+                                }
                                 boolean categoryDeleted = false;
                                 try {
                                     for (String seperateCategory : categoriesList) {
                                         if (deleteCategory.toLowerCase().equalsIgnoreCase(seperateCategory)) {
                                             categoriesList.remove(categoriesList.indexOf(deleteCategory));
-                                            categoryDeleted = true;                                        
+                                            categoryDeleted = true;
                                         }
                                     }
                                 } catch (Exception e) {
                                     // System.out.println("Cannot delete category due to exception..");
                                 }
-                               
+
                                 if (categoryDeleted) {
                                     System.out.println("\nCategory deleted successfully");
                                 } else {
@@ -345,13 +346,15 @@ public class main {
                                 categories.storeCategories(categoriesList);
                                 waitForEnter();
                                 break;
-    
+
+                            case 4 :
+                                break;
                             default:
                                 System.out.println("Invalid Choice!");
                         }
                         waitForEnter();
                         break;
-    
+
                     case 4:
                         clearScreen();
                         System.out.println("\n\n***************");
@@ -365,7 +368,7 @@ public class main {
                         System.out.println("\n");
                         waitForEnter();
                         break;
-    
+
                     case 5:
                         clearScreen();
                         System.out.println("\n\n******************");
@@ -373,9 +376,9 @@ public class main {
                         System.out.println("******************\n");
                         System.out.print("Enter Expense ID to modify expense :");
                         int modifyExpId = 0;
-                        try{
+                        try {
                             modifyExpId = sc.nextInt();
-                        }catch(Exception e){
+                        } catch (Exception e) {
                             System.out.println("Incorrect input. Try again!");
                         }
                         expense modifyExpense = new expense();
@@ -399,7 +402,7 @@ public class main {
                             sc.nextLine();
                             System.out.print("Enter category :");
                             String newCategory = sc.nextLine();
-                            if (categoriesList.contains(newCategory)) {
+                            if (categoriesList.contains(newCategory.toLowerCase())) {
                                 System.out.print("Enter description :");
                                 String newDescription = sc.nextLine();
                                 System.out.print("Enter date (dd/mm/yyyy) :");
@@ -408,7 +411,7 @@ public class main {
                                 modifyExpense.category = newCategory;
                                 modifyExpense.description = newDescription;
                                 modifyExpense.date = newDate;
-    
+
                                 try {
                                     expObjects.remove(expObjects.indexOf(tempExpense));
                                     expObjects.add(modifyExpense);
@@ -425,12 +428,63 @@ public class main {
                         expenseStorage.storeExpense(expObjects);
                         waitForEnter();
                         break;
-    
+
                     case 6:
-                        System.out.println("Currently under Development... (don't know when it will finish....)");
+                        clearScreen();
+                        System.out.println("\t********************************");
+                        System.out.println(" \tReport Generation");
+                        System.out.println("\t********************************\n");
+                        System.out.println("1) Generate report (category wise)");
+                        System.out.println("2) Generate report (Date wise)");
+                        int reportOption = 0;
+                        System.out.print("Enter your option : ");
+                        try {
+                            reportOption = sc.nextInt();
+                            sc.nextLine();
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Try again!");
+                        }
+
+                        switch (reportOption) {
+                            case 1:
+                            String categoryReport = new String();
+                            int expCount = 0;
+                            System.out.print("Enter category name to generate report :");
+                            try {
+                                categoryReport = sc.nextLine();
+                            } catch (Exception e) {
+                                System.out.println("Invalid input. Try again!");
+                            }    
+                            if(categoriesList.contains(categoryReport.toLowerCase())){
+                                System.out.println("Report Generated.\n");
+                                System.out.println("Category Name : "+ categoryReport + "\n");
+                                System.out.println("************************************************************************************************************************");
+                                System.out.println(" \t\t\t\t\t\tCategory Report");
+                                System.out.println("************************************************************************************************************************\n");
+                                for (expense reportExpense : expObjects) {
+                                    if((reportExpense.getCategory()).equals(categoryReport.toLowerCase())){
+                                        System.out.println(reportExpense.getFormattedString());
+                                        expCount++;
+                                    }
+                                }
+                                System.out.println("\n************************************************************************************************************************");
+                                System.out.println("\nTotal no. of expense with category("+categoryReport+") :" + expCount);
+                            }
+                            else{
+                                System.out.println("Category does not exist. Report generation not possible!");
+                            }
+                                break;
+                            case 2 :
+                            System.out.println("Currently under development....");
+                                break;
+
+                            default:
+                            System.out.println("Invalid option. Try Again!");
+                                break;
+                        }
                         waitForEnter();
                         break;
-    
+
                     case 7:
                         clearScreen();
                         System.out.println("\t********************************");
@@ -438,7 +492,7 @@ public class main {
                         System.out.println("\t********************************\n");
                         System.out.println("Thank you for using our expense tracker, Goodbye...\n");
                         break;
-    
+
                     default:
                         System.out.println("Invalid Choice. Try Again");
                         waitForEnter();
